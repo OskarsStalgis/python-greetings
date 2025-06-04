@@ -1,15 +1,12 @@
-FROM  python:3-alpine
+FROM python:3-alpine
 
 WORKDIR /app
 
-COPY requirements.txt ./
-COPY app.py ./
+COPY . ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 3000
 
-COPY . .
+ENTRYPOINT [ "python", "./app.py" ]
 
-CMD [ "python", "./your-daemon-or-script.py" ]
-ENTRYPOINT [ "app.py" ]
