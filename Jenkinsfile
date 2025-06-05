@@ -66,7 +66,5 @@ def test(String enviroment){
     sh "docker pull oskarsstalgis/api-tests:latest"
     def directory = pwd()
     sh "echo '${directory}'"
-    sh "docker run --network=greetings-app-network-compose --rm oskarsstalgis/api-tests:latest -v $PWD:/api-tests/mochawesome-report api-tests run greetings greetings-${enviroment} "
-
-    // greetings_${enviroment.toLowerCase()} 
+    sh "docker run --network=greetings-app-network-compose --rm oskarsstalgis/api-tests:latest run greetings greetings-${enviroment.toLowerCase()}"
 }
