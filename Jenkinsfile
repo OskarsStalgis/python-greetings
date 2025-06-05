@@ -54,9 +54,9 @@ def buildImage(){
 def deploy(String enviroment){
     echo "Deployment of node application on ${enviroment} environment.."
     sh "docker pull oskarsstalgis/python-greetings-app:latest"
-    sh "docker compose stop python-greetings-app-${enviroment.toLowerCase()}"
-    sh "docker compose rm python-greetings-app-${enviroment.toLowerCase()}"
-    sh "docker compose up -d python-greetings-app-${enviroment.toLowerCase()}"
+    sh "docker compose stop greetings-app-${enviroment.toLowerCase()}"
+    sh "docker compose rm greetings-app-${enviroment.toLowerCase()}"
+    sh "docker compose up -d greetings-app-${enviroment.toLowerCase()}"
 
 }
 
