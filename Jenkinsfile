@@ -29,14 +29,14 @@ pipeline {
                 test("STG")
             }
         }
-        stage('deploy-prd') {
+        stage('deploy-prod') {
             steps {
-                deploy("PRD")
+                deploy("PROD")
             }
         }
-        stage('test-prd') {
+        stage('test-pr0d') {
             steps {
-                test("PRD")
+                test("PROD")
             }
         }
     }
