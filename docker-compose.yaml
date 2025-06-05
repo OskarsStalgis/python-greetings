@@ -24,3 +24,6 @@ services:
     ports:
      - 7003:3000
 
+networks:
+  greetings-app-network-compose:
+    name: greetings-app-network-compose

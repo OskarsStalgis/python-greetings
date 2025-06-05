@@ -62,10 +62,10 @@ def deploy(String enviroment){
 
 def test(String environment){
     echo "API test executuon against node application on ${environment} environment.."
-    // sh "docker pull oskarsstalgis/api-tests:latest"
-    // def directory = pwd()
-    // sh "echo '${directory}'"
-    // sh "docker run --rm --network=sample-book-app-network-compose -v '${directory}':/api-tests/mochawesome-report/ oskarsstalgis/api-tests:latest run BOOKS BOOKS_${environment}"
-    // sh "ls"
-    // archiveArtifacts allowEmptyArchive: true, artifacts: 'mochawesome.json', followSymlinks: false
-}
+    sh "docker pull oskarsstalgis/api-tests:latest"
+    def directory = pwd()
+    sh "echo '${directory}'"
+    sh "docker run --rm --network=greetings-app-network-compose -v '${directory}':/api-tests/mochawesome-report/ oskarsstalgis/api-tests:latest run GREETINGS GREETINGS_${environment}"
+    sh "ls"
+    archiveArtifacts allowEmptyArchive: true, artifacts: 'mochawesome.json', followSymlinks: false
+    
