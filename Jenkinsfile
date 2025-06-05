@@ -66,8 +66,6 @@ def test(String enviroment){
 
     sh "docker pull ${DOCKER_USR}/api-tests:latest"
     def directory = pwd()
-    
-    sh "docker run --rm --network=host -v '${directory}':/api-test-automation/mochawesome-report/ ${DOCKER_USR}/api-tests:latest run greetings greetings_${enviroment.toLowerCase()}"
 
-    archiveArtifacts allowEmptyArchive: true, artifacts: 'mochawesome.json', followSymlinks: false
+    sh "docker run --rm --network=host ${DOCKER_USR}/api-tests:latest run greetings greetings_${enviroment.toLowerCase()}"
 }
