@@ -64,5 +64,5 @@ def deploy(String enviroment){
 def test(String enviroment){
     echo "API test executuon against node application on ${enviroment} environment.."
     sh "docker pull oskarsstalgis/api-tests:latest"
-    sh "docker run --rm --network=host  oskarsstalgis/api-tests:latest run greetings greetings_dev"
+    sh "docker run --rm --network=host  oskarsstalgis/api-tests:latest run greetings greetings_${enviroment.toLowerCase()}"
 }
