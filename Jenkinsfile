@@ -4,9 +4,9 @@ pipeline {
         pollSCM('*/1 * * * *')
     }
     stages {
-        stage('build') {
+        stage('build-docker-image') {
             steps {
-                buildApp()
+                buildImage()
             }
         }
         stage('deploy-dev') {
@@ -43,7 +43,7 @@ pipeline {
 }
 
 
-def buildApp(){
+def buildImage(){
     echo "Building of node application is starting.."
     sh "docker build -t oskarsstalgis/api-tests:latest ."
 
