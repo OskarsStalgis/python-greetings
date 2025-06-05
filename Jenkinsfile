@@ -61,8 +61,8 @@ def deploy(String enviroment){
     sh "docker compose up -d greetings-app-${enviroment.toLowerCase()}"
 }
 
-def test(String environment){
-    echo "API test executuon against node application on ${environment} environment.."
+def test(String enviroment){
+    echo "API test executuon against node application on ${enviroment} environment.."
     sh "docker pull oskarsstalgis/api-tests:latest"
     def directory = pwd()
     sh "echo '${directory}'"
