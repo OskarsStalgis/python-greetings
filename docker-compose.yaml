@@ -3,21 +3,27 @@ services:
     build: .
     image: oskarsstalgis/python-greetings-app:latest
     container_name: greetings-app-dev
+    networks:
+     - greetings-app-network-compose
     ports:
      - 7001:3000
   greetings-app-stg:
     build: .
     image: oskarsstalgis/python-greetings-app:latest
     container_name: greetings-app-stg
+    networks:
+     - greetings-app-network-compose
     ports:
      - 7002:3000
   greetings-app-prod:
     build: .
     image: oskarsstalgis/python-greetings-app:latest
     container_name: greetings-app-prod
+    networks:
+     - greetings-app-network-compose
     ports:
      - 7003:3000
 
 networks:
   greetings-app-network-compose:
-    name: greetings-app-network-compose
+    name: greetings-app-network-compose 
