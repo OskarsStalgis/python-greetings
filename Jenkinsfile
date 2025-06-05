@@ -45,18 +45,18 @@ pipeline {
 
 def buildImage(){
     echo "Building of node application is starting.."
-    sh "docker build -t oskarsstalgis/api-tests:latest ."
+    sh "docker build -t oskarsstalgis/python-greetings-app:latest ."
 
     echo "Pushing img to Docker registry.."
-    sh "docker push oskarsstalgis/api-tests:latest"
+    sh "docker push oskarsstalgis/python-greetings-app:latest"
 }
 
 def deploy(String enviroment){
     echo "Deployment of node application on ${enviroment} environment.."
-    sh "docker pull oskarsstalgis/sample-book-app"
-    sh "docker compose stop sample-book-app-${enviroment.toLowerCase()}"
-    sh "docker compose rm sample-book-app-${enviroment.toLowerCase()}"
-    sh "docker compose up -d sample-book-app-${enviroment.toLowerCase()}"
+    sh "docker pull oskarsstalgis/python-greetings-app:latest"
+    sh "docker compose stop python-greetings-app-${enviroment.toLowerCase()}"
+    sh "docker compose rm python-greetings-app-${enviroment.toLowerCase()}"
+    sh "docker compose up -d python-greetings-app-${enviroment.toLowerCase()}"
 
 }
 
