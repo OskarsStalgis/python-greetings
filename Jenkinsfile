@@ -69,5 +69,6 @@ def test(String enviroment){
     echo "API test executuon against node application on ${enviroment} environment.."
     sh "docker pull ${DOCKER_USR}/api-tests:latest"
     def direcory = pwd()
-    sh "docker run --rm --network=host  -v '${directory}':/api-test-automation/mochawesome-report ${DOCKER_USR}/api-tests:latest run greetings greetings_${enviroment.toLowerCase()}"
+    sh "docker run --rm --network=host ${DOCKER_USR}/api-tests:latest run greetings greetings_${enviroment.toLowerCase()}"
+    sh "ls"
 }
