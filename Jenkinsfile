@@ -54,10 +54,10 @@ def buildImage(){
 }
 
 def deploy(String enviroment){
-    echo "Deployment of node application on ${enviroment} environment.."
+    echo "Deploying Python microservice to ${enviroment} environment.."
     sh "docker pull oskarsstalgis/python-greetings-app:latest"
-    sh "docker compose stop greetings-app-${enviroment.toLowerCase()}"
-    sh "docker compose rm greetings-app-${enviroment.toLowerCase()}"
+    sh "docker stop greetings-app-${enviroment.toLowerCase()}"
+    sh "docker rm greetings-app-${enviroment.toLowerCase()}"
     sh "docker compose up -d greetings-app-${enviroment.toLowerCase()}"
 }
 
