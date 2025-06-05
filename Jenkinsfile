@@ -1,3 +1,5 @@
+//TODO 1.Swap username instances with an argument.
+
 pipeline {
     agent any
     triggers{
@@ -9,32 +11,32 @@ pipeline {
                 buildImage()
             }
         }
-        stage('deploy-dev') {
+        stage('deploy-to-dev') {
             steps {
                 deploy("DEV")
             }
         }
-        stage('test-dev') {
+        stage('test-on-dev') {
             steps {
                 test("DEV")
             }
         }
-        stage('deploy-stg') {
+        stage('deploy-to-stg') {
             steps {
                deploy("STG")
             }
         }
-        stage('test-stg') {
+        stage('test-on-stg') {
             steps {
                 test("STG")
             }
         }
-        stage('deploy-prod') {
+        stage('deploy-to-prod') {
             steps {
                 deploy("PROD")
             }
         }
-        stage('test-pr0d') {
+        stage('test-on-prod') {
             steps {
                 test("PROD")
             }
@@ -44,10 +46,10 @@ pipeline {
 
 
 def buildImage(){
-    echo "Building of node application is starting.."
+    echo "Building of Docker Image is starting.."
     sh "docker build -t oskarsstalgis/python-greetings-app:latest ."
 
-    echo "Pushing img to Docker registry.."
+    echo "Pushing image to Docker registry.."
     sh "docker push oskarsstalgis/python-greetings-app:latest"
 }
 
@@ -57,7 +59,6 @@ def deploy(String enviroment){
     sh "docker compose stop greetings-app-${enviroment.toLowerCase()}"
     sh "docker compose rm greetings-app-${enviroment.toLowerCase()}"
     sh "docker compose up -d greetings-app-${enviroment.toLowerCase()}"
-
 }
 
 def test(String environment){
