@@ -44,18 +44,19 @@ pipeline {
     }
 }
 
+String docker_usr="oskarsstalgis"
 
 def buildImage(){
     echo "Building of Docker Image is starting.."
-    sh "docker build -t oskarsstalgis/python-greetings-app:latest ."
+    sh "docker build -t ${docker_usr}/python-greetings-app:latest ."
 
     echo "Pushing image to Docker registry.."
-    sh "docker push oskarsstalgis/python-greetings-app:latest"
+    sh "docker push ${docker_usr}/python-greetings-app:latest"
 }
 
 def deploy(String enviroment){
     echo "Deploying Python microservice to ${enviroment} environment.."
-    sh "docker pull oskarsstalgis/python-greetings-app:latest"
+    sh "docker pull ${docker_usr}/python-greetings-app:latest"
     sh "docker compose stop greetings-app-${enviroment.toLowerCase()}"
     sh "docker compose rm greetings-app-${enviroment.toLowerCase()}"
     sh "docker compose up -d greetings-app-${enviroment.toLowerCase()}"
@@ -63,6 +64,6 @@ def deploy(String enviroment){
 
 def test(String enviroment){
     echo "API test executuon against node application on ${enviroment} environment.."
-    sh "docker pull oskarsstalgis/api-tests:latest"
-    sh "docker run --rm --network=host  oskarsstalgis/api-tests:latest run greetings greetings_${enviroment.toLowerCase()}"
+    sh "docker pull ${docker_usr}/api-tests:latest"
+    sh "docker run --rm --network=host  ${docker_usr}/api-tests:latest run greetings greetings_${enviroment.toLowerCase()}"
 }
